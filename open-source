@@ -22,7 +22,6 @@ monitorSeats()
 Tab:CreateButton({ Name = "Kill player", Callback = function() executeScript() Rayfield:Notify({ Title = "Vehicle Control", Content = "Vehicle control activated.", Duration = 4, Image = 4483362458 }) end })
 Tab:CreateButton({ Name = "Enable Fall Teleport (LocalPlayer)", Callback = function() monitorFallTeleport(Players.LocalPlayer) Rayfield:Notify({ Title = "Fall Teleport", Content = "Fall teleport enabled for local player.", Duration = 4, Image = 4483362458 }) end })
 --===[ Arremessar Jogador ]===-- Tab:CreateButton({ Name = "Throw Player", Callback = function() if not selectedPlayerName then Rayfield:Notify({ Title = "Erro", Content = "Nenhum jogador selecionado.", Duration = 3 }) return end
-
 local player = Players.LocalPlayer local target = Players:FindFirstChild(selectedPlayerName) if not target then return end local SoccerBalls = Workspace:FindFirstChild("SoccerBalls") if not SoccerBalls then return end local MyBall = SoccerBalls:FindFirstChild("Soccer" .. player.Name) if not MyBall then if not player.Backpack:FindFirstChild("SoccerBall") then local args = { [1] = "PickingTools", [2] = "SoccerBall" } game:GetService("ReplicatedStorage").RE:FindFirstChild("1Too1l"):InvokeServer(unpack(args)) task.wait() player.Backpack.SoccerBall.Parent = player.Character repeat MyBall = SoccerBalls:FindFirstChild("Soccer" .. player.Name) task.wait() until MyBall player.Character.SoccerBall.Parent = player.Backpack else player.Backpack.SoccerBall.Parent = player.Character repeat MyBall = SoccerBalls:FindFirstChild("Soccer" .. player.Name) task.wait() until MyBall player.Character.SoccerBall.Parent = player.Backpack end end local TCharacter = target.Character or target.CharacterAdded:Wait() local THumanoidRootPart = TCharacter:FindFirstChild("HumanoidRootPart") if not THumanoidRootPart or not TCharacter:FindFirstChild("Humanoid") then return end for _, v in pairs(MyBall:GetChildren()) do if v:IsA("BodyMover") then v:Destroy() end end local bodyVelocity = Instance.new("BodyVelocity", MyBall) bodyVelocity.Velocity = Vector3.new(9e8, 9e8, 9e8) bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge) local bv = Instance.new("BodyVelocity", THumanoidRootPart) bv.Velocity = Vector3.new(9e8, 9e8, 9e8) bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge) bv.P = 1e9 workspace.CurrentCamera.CameraSubject = THumanoidRootPart repeat local parts = {} for _, v in pairs(TCharacter:GetDescendants()) do if v:IsA("BasePart") and v.CanCollide and not v.Anchored then table.insert(parts, v) end end for _, part in ipairs(parts) do MyBall.CFrame = part.CFrame task.wait() end task.wait() until THumanoidRootPart.Velocity.Magnitude > 5000 or TCharacter.Humanoid.Health == 0 or target.Parent ~= game.Players workspace.CurrentCamera.CameraSubject = player.Character:WaitForChild("HumanoidRootPart") end 
 local toggles = {
     Spinning = false
@@ -115,7 +114,6 @@ Tab:CreateButton({
         EquiparFerramentas("PaintRoller")
         toggles.Spinning = true
         startSpin()
-        warn("skibidi toilet, skibidi sigma")
     end,
 })
 
