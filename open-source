@@ -1,4 +1,4 @@
---===[ Importação e Interface ]===-- local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua'))()
+--===[ Importação e Interface ]===-- local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({ Name = "Admin Spoofing Spin-off for Brookhaven", LoadingTitle = "Admin Spoofing is loading", LoadingSubtitle = "by Wx and Why", ConfigurationSaving = { Enabled = true, FolderName = "rbxcache", FileName = "tempfiles" }, Discord = {Enabled = false}, KeySystem = false })
 local Tab = Window:CreateTab("Admin", 4483345998)
 local Players = game:GetService("Players") local Workspace = game:GetService("Workspace") local RunService = game:GetService("RunService")
